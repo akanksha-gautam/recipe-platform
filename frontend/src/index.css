@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-color: #0b0f19;
+  --text-color: #d1d5db;
+  --text-heading: #ffffff;
+  --card-bg: rgba(21, 28, 44, 0.6);
+  --card-hover-bg: rgba(21, 28, 44, 0.85);
+  --border-color: rgba(255, 255, 255, 0.05);
+  --border-hover-color: rgba(16, 185, 129, 0.2);
+  --footer-bg: rgba(11, 15, 25, 0.3);
+  --scroll-track: #0b0f19;
+  --scroll-thumb: #1e293b;
+  --scroll-thumb-hover: #334155;
+  --bg-gradient: radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.04) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(5, 150, 105, 0.04) 0px, transparent 50%);
+  --input-bg: rgba(255, 255, 255, 0.02);
+  --input-border: rgba(255, 255, 255, 0.08);
+  --input-text: #ffffff;
+  --input-shadow: none;
+  --input-focus-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+  
+  /* Additional glass values */
+  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --card-hover-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.2);
+  --card-blur: blur(12px);
+  
+  /* Button values */
+  --btn-bg: rgba(255, 255, 255, 0.03);
+  --btn-border: rgba(255, 255, 255, 0.08);
+  --btn-text: #d1d5db;
+  --btn-shadow: none;
+  --btn-hover-bg: rgba(16, 185, 129, 0.1);
+  --btn-hover-border: rgba(16, 185, 129, 0.3);
+  --btn-hover-text: #10b981;
+  --btn-hover-shadow: none;
+  --btn-primary-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
+html.light {
+  --bg-color: #e0e5ec;
+  --text-color: #4a5568;
+  --text-heading: #1a202c;
+  --card-bg: #e0e5ec;
+  --card-hover-bg: #e0e5ec;
+  --border-color: transparent;
+  --border-hover-color: transparent;
+  --footer-bg: #e0e5ec;
+  --scroll-track: #e0e5ec;
+  --scroll-thumb: #b8c6db;
+  --scroll-thumb-hover: #a3b1c6;
+  --bg-gradient: none;
+  --input-bg: #e0e5ec;
+  --input-border: transparent;
+  --input-text: #2d3748;
+  --input-shadow: inset 6px 6px 10px #a3b1c6, inset -6px -6px 10px #ffffff;
+  --input-focus-shadow: inset 4px 4px 6px #a3b1c6, inset -4px -4px 6px #ffffff, 0 0 0 2px rgba(16, 185, 129, 0.3);
+  
+  /* Neumorphism values */
+  --card-shadow: 8px 8px 15px #a3b1c6, -8px -8px 15px #ffffff;
+  --card-hover-shadow: 12px 12px 20px #92a1b5, -12px -12px 20px #ffffff;
+  --card-blur: none;
+  
+  /* Button values */
+  --btn-bg: #e0e5ec;
+  --btn-border: transparent;
+  --btn-text: #4a5568;
+  --btn-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff;
+  --btn-hover-bg: #e0e5ec;
+  --btn-hover-border: transparent;
+  --btn-hover-text: #10b981;
+  --btn-hover-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff;
+  --btn-primary-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff;
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    background-image: var(--bg-gradient);
+    background-attachment: fixed;
+    @apply antialiased font-sans min-h-screen selection:bg-accent selection:text-white transition-colors duration-300;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--text-heading);
+    @apply tracking-tight font-semibold transition-colors duration-300;
+  }
+}
+
+/* Custom scrollbar for premium look */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scroll-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius: 9999px;
+  border: 2px solid var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll-thumb-hover);
+}
+
+/* Glassmorphism / Neumorphism utility */
+.glass {
+  background: var(--card-bg);
+  backdrop-filter: var(--card-blur);
+  -webkit-backdrop-filter: var(--card-blur);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.glass-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-hover:hover {
+  background: var(--card-hover-bg);
+  border-color: var(--border-hover-color);
+  transform: translateY(-4px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+/* Premium Input Styles */
+.input-premium {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--input-text);
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  box-shadow: var(--input-shadow);
+  transition: all 0.3s ease;
+}
+
+.input-premium:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: var(--input-focus-shadow);
+}
+
+.input-premium::placeholder {
+  color: #64748b;
+}
+
+.input-premium:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Premium Button Styles */
+.btn-premium {
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-border);
+  color: var(--btn-text);
+  box-shadow: var(--btn-shadow);
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-premium:hover:not(:disabled) {
+  background: var(--btn-hover-bg);
+  border-color: var(--btn-hover-border);
+  color: var(--btn-hover-text);
+  box-shadow: var(--btn-hover-shadow);
+}
+
+.btn-premium:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-premium:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Primary Premium Button (Emerald) */
+.btn-primary-premium {
+  background: #10b981;
+  border: 1px solid transparent;
+  color: #ffffff;
+  box-shadow: var(--btn-primary-shadow);
+  border-radius: 1rem;
+  padding: 0.5rem 1.25rem;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary-premium:hover:not(:disabled) {
+  background: #059669;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+  transform: translateY(-2px);
+}
+
+.btn-primary-premium:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-primary-premium:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Shimmer animation for loading states */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.03) 20%,
+      rgba(255, 255, 255, 0.08) 60%,
+      rgba(255, 255, 255, 0) 100%);
+  animation: shimmer 2s infinite;
+  content: '';
+}
